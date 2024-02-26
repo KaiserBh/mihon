@@ -72,6 +72,7 @@ class SyncPreferences(
             syncOnChapterRead = preferenceStore.getBoolean("sync_on_chapter_read", false).get(),
             syncOnChapterOpen = preferenceStore.getBoolean("sync_on_chapter_open", false).get(),
             syncOnAppStart = preferenceStore.getBoolean("sync_on_app_start", false).get(),
+            syncOnAppStop = preferenceStore.getBoolean("sync_on_app_stop", false).get(),
             syncOnAppResume = preferenceStore.getBoolean("sync_on_app_resume", false).get(),
             syncOnLibraryUpdate = preferenceStore.getBoolean("sync_on_library_update", false).get(),
         )
@@ -84,6 +85,8 @@ class SyncPreferences(
             .set(syncTriggerOptions.syncOnChapterOpen)
         preferenceStore.getBoolean("sync_on_app_start", false)
             .set(syncTriggerOptions.syncOnAppStart)
+        preferenceStore.getBoolean("sync_on_app_stop", false)
+            .set(syncTriggerOptions.syncOnAppStop)
         preferenceStore.getBoolean("sync_on_app_resume", false)
             .set(syncTriggerOptions.syncOnAppResume)
         preferenceStore.getBoolean("sync_on_library_update", false)

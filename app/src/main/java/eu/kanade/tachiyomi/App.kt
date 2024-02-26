@@ -181,6 +181,12 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
 
     override fun onStop(owner: LifecycleOwner) {
         SecureActivityDelegate.onApplicationStopped()
+
+        val syncPreferences: SyncPreferences by injectLazy()
+        val syncTriggerOpt = syncPreferences.getSyncTriggerOptions()
+        if (syncPreferences.isSyncEnabled() && syncTriggerOpt.syncOnAppStop) {
+            SyncDataJob.startNow(this@App)
+        }
     }
 
     override fun getPackageName(): String {
