@@ -8,6 +8,7 @@ data class SyncTriggerOptions(
     val syncOnChapterRead: Boolean = false,
     val syncOnChapterOpen: Boolean = false,
     val syncOnAppStart: Boolean = false,
+    val syncOnAppStop: Boolean = false,
     val syncOnAppResume: Boolean = false,
     val syncOnLibraryUpdate: Boolean = false,
 ) {
@@ -15,6 +16,7 @@ data class SyncTriggerOptions(
         syncOnChapterRead,
         syncOnChapterOpen,
         syncOnAppStart,
+        syncOnAppStop,
         syncOnAppResume,
         syncOnLibraryUpdate,
     )
@@ -22,6 +24,7 @@ data class SyncTriggerOptions(
     fun anyEnabled() = syncOnChapterRead ||
         syncOnChapterOpen ||
         syncOnAppStart ||
+        syncOnAppStop ||
         syncOnAppResume ||
         syncOnLibraryUpdate
 
@@ -43,6 +46,11 @@ data class SyncTriggerOptions(
                 setter = { options, enabled -> options.copy(syncOnAppStart = enabled) },
             ),
             Entry(
+                label = MR.strings.sync_on_app_stop,
+                getter = SyncTriggerOptions::syncOnAppStop,
+                setter = { options, enabled -> options.copy(syncOnAppStop = enabled) },
+            ),
+            Entry(
                 label = MR.strings.sync_on_app_resume,
                 getter = SyncTriggerOptions::syncOnAppResume,
                 setter = { options, enabled -> options.copy(syncOnAppResume = enabled) },
@@ -58,8 +66,9 @@ data class SyncTriggerOptions(
             syncOnChapterRead = array[0],
             syncOnChapterOpen = array[1],
             syncOnAppStart = array[2],
-            syncOnAppResume = array[3],
-            syncOnLibraryUpdate = array[4],
+            syncOnAppStop = array[3],
+            syncOnAppResume = array[4],
+            syncOnLibraryUpdate = array[5],
         )
     }
 
